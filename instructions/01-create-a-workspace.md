@@ -50,15 +50,16 @@ One of the benefits of Azure Machine Learning is the ability to create cloud-bas
     For this exercise, you'll create a compute instance so you can run some code in your workspace.
 
 2. On the **Compute instances** tab, add a new compute instance with the following settings. You'll use this as a workstation to run code in notebooks.
-    - **Region**: *The same region as your workspace*
+    - **Compute name**: *enter a unique name*
+    - **Location**: *The same location as your workspace*
     - **Virtual machine type**: CPU
     - **Virtual machine size**: Standard_DS11_v2 *(this is not listed as a recommended option - we're using it in this course to minimize cost while providing acceptable performance)*
-    - **Compute name**: *enter a unique name*
+    - - **Total Available Quotas**:
+    - **Show advanced settings**: Note the following settings, but do not select them:- 
     - **Enable SSH access**: Unselected *(you can use this to enable direct access to the virtual machine using an SSH client)*
-    - **Show advanced settings**: Note the following settings, but do not select them:
         - **Enable virtual network**: Unselected *(you would typically use this in an enterprise environment to enhance network security)*
         - **Assign to another user**: Unselected *(you can use this to assign a compute instance to a data scientist)*
-3. Wait for the compute instance to start and its status to change to **Running**.
+3.Create and Wait for the compute instance to start and its state to change to **Running**.
 
 > [!NOTE]
 > Compute instances and clusters are based on standard Azure virtual machine images. For this exercise, the *Standard_DS11_v2* image is recommended to achieve the optimal balance of cost and performance. If your subscription has a quota that does not include this image, choose an alternative image; but bear in mind that a larger image may incur higher cost and a smaller image may not be sufficient to complete the tasks. Alternatively, ask your Azure administrator to extend your quota.
@@ -68,8 +69,9 @@ One of the benefits of Azure Machine Learning is the ability to create cloud-bas
 A lot of data science and machine learning experimentation is performed by running code in *notebooks*. Your compute instance includes fully featured Python notebook environments (*Jupyter* and *JuypyterLab*) that you can use for extensive work; but for basic notebook editing, you can use the built-in **Notebooks** page in Azure Machine learning studio.
 
 1. In Azure Machine Learning studio, view the **Notebooks** page.
-2. Open a **Terminal**, and ensure that its **Compute** is set to your compute instance and that the current path is the **/users/*your-user-name*** folder.
-3. Enter the following command to clone a Git repository containing notebooks, data, and other files to your workspace:
+2. Close the whats new popup
+3. Select **use terminal to clone from git repo** to open a terminal, and ensure that its **Compute** is set to your compute instance and that the current path is the **/users/your-user-name** folder.
+4. Enter the following command to clone a Git repository containing notebooks, data, and other files to your workspace:
 
     ```bash
     git clone https://github.com/MicrosoftLearning/mslearn-dp100
