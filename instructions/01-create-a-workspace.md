@@ -54,9 +54,9 @@ One of the benefits of Azure Machine Learning is the ability to create cloud-bas
     - **Location**: *The same location as your workspace*
     - **Virtual machine type**: CPU
     - **Virtual machine size**: Standard_DS11_v2 *(this is not listed as a recommended option - we're using it in this course to minimize cost while providing acceptable performance)*
-    - - **Total Available Quotas**:
-    - **Show advanced settings**: Note the following settings, but do not select them:- 
-    - **Enable SSH access**: Unselected *(you can use this to enable direct access to the virtual machine using an SSH client)*
+    - **Total Available Quotas**: This shows dedicated cores available.
+    - **Show advanced settings**: Note the following settings, but do not select them: 
+        - **Enable SSH access**: Unselected *(you can use this to enable direct access to the virtual machine using an SSH client)*
         - **Enable virtual network**: Unselected *(you would typically use this in an enterprise environment to enhance network security)*
         - **Assign to another user**: Unselected *(you can use this to assign a compute instance to a data scientist)*
 3.Wait for the compute instance to start and its state to change to **Running**.
@@ -70,7 +70,7 @@ A lot of data science and machine learning experimentation is performed by runni
 
 1. In Azure Machine Learning studio, view the **Notebooks** page.
 2. If a message describing new features is displayed, close it.
-3. Select **use terminal to clone from git repo** to open a terminal, and ensure that its **Compute** is set to your compute instance and that the current path is the **/users/your-user-name** folder.
+3. Select **Terminal** or the **Open terminal** icon to open a terminal, and ensure that its **Compute** is set to your compute instance and that the current path is the **/users/your-user-name** folder.
 4. Enter the following command to clone a Git repository containing notebooks, data, and other files to your workspace:
 
     ```bash
