@@ -115,11 +115,12 @@ After you've used automated machine learning to train some models, you can deplo
 > **Note**: In Azure Machine Learning, you can deploy a service as an Azure Container Instances (ACI) or to an Azure Kubernetes Service (AKS) cluster. For production scenarios, an AKS deployment is recommended, for which you must create an *inference cluster* compute target. In this exercise, you'll use an ACI service, which is a suitable deployment target for testing, and does not require you to create an inference cluster.
 
 1. Select the **Details** tab for the run that produced the best model.
-2. Use the **Deploy** button to deploy the model with the following settings:
+2. From the **Deploy** option, use the **Deploy to web service** button to deploy the model with the following settings:
     - **Name**: auto-predict-diabetes
     - **Description**: Predict diabetes
-    - **Compute type**: ACI
+    - **Compute type**: Azure Container Instance
     - **Enable authentication**: Selected
+    - **Use custom deployment assets**: Unselected
 3. Wait for the deployment to start - this may take a few seconds. Then, on the **Model** tab, in the **Model summary** section, observe the **Deploy status** for the **auto-predict-diabetes** service, which should be **Running**. Wait for this status to change to **Successful**. You may need to select **&#8635; Refresh** periodically.  **NOTE** This can take a while - be patient!
 4. In Azure Machine Learning studio, view the **Endpoints** page and select the **auto-predict-diabetes** real-time endpoint. Then select the **Consume** tab and note the following information there. You need this information to connect to your deployed service from a client application.
     - The REST endpoint for your service
