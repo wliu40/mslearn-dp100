@@ -74,18 +74,23 @@ In Azure Machine Learning, operations that you run are called *experiments*. Fol
     - **Configure run**:
         - **New experiment name**: mslearn-automl-diabetes
         - **Target column**: Diabetic (*this is the label the model will be trained to predict)*
-        - **Select compute cluster**: *the compute cluster you created previously*
+        - **Select compute type**: Compute cluster
+        - **Select Azure ML compute cluster**: *the compute cluster you created previously*
     - **Task type and settings**:
         - **Task type**: Classification
-        - **Additional configuration settings:**
+        - Select **View additional configuration settings** to open **Additional configurations**:
             - **Primary metric**: Select **AUC_Weighted** *(more about this metric later!)*
             - **Explain best model**: Selected - *this option causes automated machine learning to calculate feature importance for the best model; making it possible to determine the influence of each feature on the predicted label.*
             - **Blocked algorithms**: Leave the default setting - *all algorithms can potentially be used when training*
             - **Exit criterion**:
                 - **Training job time (hours)**: 0.5 - *this causes the experiment to end after a maximum of 30 minutes.*
                 - **Metric score threshold**: 0.90 - *this causes the experiment to end if a model achieves a weighted AUC metric of 90% or higher.*
-        - **Featurization settings:**
+        - Select **View featurization settings** to open **Featurization**:
             - **Enable featurization**: Selected - *this causes Azure Machine Learning to automatically preprocess the features before training.*
+    - **Select the validation and test type**:
+        - **Validation type**: Train-validation split
+        - **Percentage validation of data**: 30
+        - **Test dataset**: No test dataset required
 
 3. When you finish submitting the automated ML run details, it will start automatically. You can observe the status of the run in the **Properties** pane.
 4. When the run status changes to *Running*, view the **Models** tab and observe as each possible combination of training algorithm and pre-processing steps is tried and the performance of the resulting model is evaluated. The page will automatically refresh periodically, but you can also select **&#8635; Refresh**. It may take ten minutes or so before models start to appear, as the cluster nodes need to be initialized and the data featurization process completed before training can begin. Now might be a good time for a coffee break!
