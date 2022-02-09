@@ -85,7 +85,7 @@ A lot of data science and machine learning experimentation is performed by runni
 
 > **New to Python?** Use the [Python cheat sheet](instructions\cheat-sheets\dp100-cheat-sheet-python.pdf) to understand the code.
 
-> **New to machine learning?** Use the [machine learning overview](instructions\cheat-sheets\dp100-cheat-sheet-machine-learning.pdf) to get a simplified overview of the machine learning process overview in Azure Machine Learning.
+> **New to machine learning?** Use the [machine learning overview](instructions\cheat-sheets\dp100-cheat-sheet-machine-learning.pdf) to get a simplified overview of the machine learning process in Azure Machine Learning.
 
 ## Stop your compute instance
 
