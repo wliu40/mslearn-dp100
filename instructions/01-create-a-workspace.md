@@ -61,7 +61,7 @@ One of the benefits of Azure Machine Learning is the ability to create cloud-bas
         - **Assign to another user**: Unselected *(you can use this to assign a compute instance to a data scientist)*
 3.Wait for the compute instance to start and its state to change to **Running**.
 
-> [!NOTE]
+> **Note**:
 > Compute instances and clusters are based on standard Azure virtual machine images. For this exercise, the *Standard_DS11_v2* image is recommended to achieve the optimal balance of cost and performance. If your subscription has a quota that does not include this image, choose an alternative image; but bear in mind that a larger image may incur higher cost and a smaller image may not be sufficient to complete the tasks. Alternatively, ask your Azure administrator to extend your quota.
 
 ## Clone and run a notebook
