@@ -81,7 +81,11 @@ A lot of data science and machine learning experimentation is performed by runni
 5. Close the terminal pane, terminating the session.
 6. In the **/users/*your-user-name*/mslearn-dp100** folder, open the **Get Started with Notebooks** notebook. Then read the notes and follow the instructions it contains.
 
-> **Tip**: To run a code cell, select the cell you want to run and then use the **&#9655;** button to run it.
+> **Tip**: To run a code cell, select the cell you want to run and then use the **&#9655;** button to run it. 
+
+> **New to Python?** Use the [Python cheat sheet](instructions\cheat-sheets\dp100-cheat-sheet-python.pdf) to understand the code.
+
+> **New to machine learning?** Use the [machine learning overview](instructions\cheat-sheets\dp100-cheat-sheet-machine-learning.pdf) to get a simplified overview of the machine learning process overview in Azure Machine Learning.
 
 ## Stop your compute instance
 
