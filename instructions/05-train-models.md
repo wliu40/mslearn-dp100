@@ -17,7 +17,7 @@ While you can use the **Notebooks** page in Azure Machine Learning studio to run
 1. In [Azure Machine Learning studio](https://ml.azure.com), view the **Compute** page for your workspace; and on the **Compute Instances** tab, start your compute instance if it is not already running.
 2. When the compute instance is running, click the **Jupyter** link to open the Jupyter home page in a new browser tab.
 
-> **Tip**: New to Python? Use the [Python cheat sheet](instructions\cheat-sheets\dp100-cheat-sheet-python.pdf) to understand the code. New to machine learning? Use the [machine learning overview](instructions\cheat-sheets\dp100-cheat-sheet-machine-learning.pdf) to get a simplified overview of the machine learning process overview in Azure Machine Learning.
+> **Tip**: New to Python? Use the [Python cheat sheet](cheat-sheets/dp100-cheat-sheet-python.pdf) to understand the code. New to machine learning? Use the [machine learning overview](cheat-sheets/dp100-cheat-sheet-machine-learning.pdf) to get a simplified overview of the machine learning process overview in Azure Machine Learning.
 
 ## Train models using the Azure Machine Learning SDK
 
