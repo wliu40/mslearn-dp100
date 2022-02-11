@@ -83,9 +83,9 @@ A lot of data science and machine learning experimentation is performed by runni
 
 > **Tip**: To run a code cell, select the cell you want to run and then use the **&#9655;** button to run it. 
 
-> **New to Python?** Use the [Python cheat sheet](cheat-sheets\dp100-cheat-sheet-python.pdf) to understand the code.
+> **New to Python?** Use the [Python cheat sheet](cheat-sheets/dp100-cheat-sheet-python.pdf) to understand the code.
 
-> **New to machine learning?** Use the [machine learning overview](cheat-sheets\dp100-cheat-sheet-machine-learning.pdf) to get a simplified overview of the machine learning process in Azure Machine Learning.
+> **New to machine learning?** Use the [machine learning overview](cheat-sheets/dp100-cheat-sheet-machine-learning.pdf) to get a simplified overview of the machine learning process in Azure Machine Learning.
 
 ## Stop your compute instance
 
