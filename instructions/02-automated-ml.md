@@ -81,7 +81,8 @@ In Azure Machine Learning, operations that you run are called *experiments*. Fol
         - Select **View additional configuration settings** to open **Additional configurations**:
             - **Primary metric**: Select **AUC_Weighted** *(more about this metric later!)*
             - **Explain best model**: Selected - *this option causes automated machine learning to calculate feature importance for the best model; making it possible to determine the influence of each feature on the predicted label.*
-            - **Blocked algorithms**: Leave the default setting - *all algorithms can potentially be used when training*
+            - **Use all supported models**: <u>Un</u>selected - we'll restrict the experiment to try a few specific algorithms.
+            - **Allowed models**: Select only **LogisticRegression** and **RandomForest**. These will be the only algorithms tried in the experiment.
             - **Exit criterion**:
                 - **Training job time (hours)**: 0.5 - *this causes the experiment to end after a maximum of 30 minutes.*
                 - **Metric score threshold**: 0.90 - *this causes the experiment to end if a model achieves a weighted AUC metric of 90% or higher.*
