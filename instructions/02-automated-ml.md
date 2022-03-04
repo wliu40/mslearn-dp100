@@ -23,7 +23,7 @@ To use automated machine learning, you require compute on which to run the model
 2. In Azure Machine Learning studio, view the **Compute** page; and on the **Compute instances** tab, start your compute instance if it is not already running. You will use this compute instance to test your trained model.
 3. While the compute instance is starting, switch to the **Compute clusters** tab, and add a new compute cluster with the following settings. You'll run the automated machine learning experiment on this cluster to take advantage of the ability to distribute the training runs across multiple compute nodes:
     - **Location**: *The same location as your workspace*
-    - **Virtual Machine priority**: Dedicated
+    - **Virtual Machine tier**: Dedicated
     - **Virtual Machine type**: CPU
     - **Virtual Machine size**: Standard_DS11_v2
     - **Compute name**: *enter a unique name*
