@@ -4,7 +4,7 @@ lab:
 ---
 # Use Azure Machine Learning Designer
 
-Azure Machine Learning *designer* provides a drag & drop environment in which you can define a workflow, or *pipeline* of data ingestion, transformation, and model training modules to create a machine learning model. You can then publish this pipeline as a web service that client applications can use for *inferencing* (generating predictions from new data).
+Azure Machine Learning *designer* provides a drag & drop environment in which you can define a workflow, or *pipeline* of data ingestion, transformation, and model training components to create a machine learning model. You can then publish this pipeline as a web service that client applications can use for *inferencing* (generating predictions from new data).
 
 ## Before You Start
 
@@ -57,10 +57,10 @@ Now that you have some compute resources that you can use to run a training pipe
 To get started with designer, first you must create a pipeline and add the dataset you want to work with.
 
 1. In Azure Machine Learning studio, view the **Designer** page and create a new pipeline.
-2. Change the default pipeline name (**Pipeline-Created-on-*date***) to **Visual Diabetes Training** By clicking on the default name (or click the **&#9881;** icon next to the pipeline name and change from there)
+2. Change the default pipeline name (**Pipeline-Created-on-*date***) to **Visual Diabetes Training** by clicking the **&#9881;** icon at the right to open the **Settings** pane.
 3. Note that you need to specify a compute target on which to run the pipeline. In the **Settings** pane, click **Select compute target** and select your compute cluster.
-4. On the left side of the designer, expand the **Datasets** section, and drag the **diabetes dataset** dataset onto the canvas.
-5. Select the **diabetes dataset** module on the canvas. Then right-click it, and select **Preview data**.
+4. On the left side of the designer, select the **Data** tab, and drag the **diabetes dataset** dataset onto the canvas.
+5. Select the **diabetes dataset** component on the canvas. Then right-click it, and select **Preview data**.
 6. In the DatasetOutput pane, select the **Profile** tab.
 7. Review the schema of the data, noting that you can see the distributions of the various columns as histograms. Then close the visualization.
 
@@ -68,9 +68,9 @@ To get started with designer, first you must create a pipeline and add the datas
 
 Before you can train a model, you typically need to apply some preprocessing transformations to the data.
 
-1. In the pane on the left, expand the **Data Transformation** section, which contains a wide range of modules you can use to transform data before model training.
-2. Drag a **Normalize Data** module to the canvas, below the **diabetes dataset** module. Then connect the output from the **diabetes dataset** module to the input of the **Normalize Data** module.
-3. Select the **Normalize Data** module and view its settings, noting that it requires you to specify the transformation method and the columns to be transformed. Then, leaving the transformation as **ZScore**, edit the columns to includes the following column names:
+1. In the pane on the left, select the **Component** tab, which contains a wide range of components you can use to transform data before model training. You can search for components at the top of the pane.
+2. Search for the **Normalize Data** component and drag it to the canvas, below the **diabetes dataset** component. Then connect the output from the **diabetes dataset** component to the input of the **Normalize Data** component.
+3. Select the **Normalize Data** component and view its settings, noting that it requires you to specify the transformation method and the columns to be transformed. Then, leaving the transformation as **ZScore**, edit the columns to includes the following column names:
     * PlasmaGlucose
     * DiastolicBloodPressure
     * TricepsThickness
@@ -80,22 +80,22 @@ Before you can train a model, you typically need to apply some preprocessing tra
 
     **Note**: We're normalizing the numeric columns put them on the same scale, and avoid columns with large values dominating model training. You'd normally apply a whole bunch of pre-processing transformations like this to prepare your data for training, but we'll keep things simple in this exercise.
 
-4. Now we're ready to split the data into separate datasets for training and validation. In the pane on the left, in the **Data Transformations** section, drag a **Split Data** module onto the canvas under the **Normalize Data** module. Then connect the *Transformed Dataset* (left) output of the **Normalize Data** module to the input of the **Split Data** module.
-5. Select the **Split Data** module, and configure its settings as follows:
+4. Now we're ready to split the data into separate datasets for training and validation. In the pane on the left, search for the **Split Data** component and drag it onto the canvas under the **Normalize Data** component. Then connect the *Transformed Dataset* (left) output of the **Normalize Data** component to the input of the **Split Data** component.
+5. Select the **Split Data** component, and configure its settings as follows:
     * **Splitting mode** Split Rows
     * **Fraction of rows in the first output dataset**: 0.7
     * **Random seed**: 123
     * **Stratified split**: False
 
-## Add model training modules
+## Add model training components
 
 With the data prepared and split into training and validation datasets, you're ready to configure the pipeline to train and evaluate a model.
 
-1. Expand the **Model Training** section in the pane on the left, and drag a **Train Model** module to the canvas, under the **Split Data** module. Then connect the *Result dataset1* (left) output of the **Split Data** module to the *Dataset* (right) input of the **Train Model** module.
-2. The model we're training will predict the **Diabetic** value, so select the **Train Model** module and modify its settings to set the **Label column** to  **Diabetic** (matching the case and spelling exactly!)
-3. The **Diabetic** label the model will predict is a binary column (1 for patients who have diabetes, 0 for patients who don't), so we need to train the model using a *classification* algorithm. Expand the **Machine Learning Algorithms** section, and under **Classification**, drag a **Two-Class Logistic Regression** module to the canvas, to the left of the **Split Data** module and above the **Train Model** module. Then connect its output to the **Untrained model** (left) input of the **Train Model** module.
-4. To test the trained model, we need to use it to score the validation dataset we held back when we split the original data. Expand the **Model Scoring & Evaluation** section and drag a **Score Model** module to the canvas, below the **Train Model** module. Then connect the output of the **Train Model** module to the **Trained model** (left) input of the **Score Model** module; and drag the **Results dataset2** (right) output of the **Split Data** module to the **Dataset** (right) input of the **Score Model** module.
-5. To evaluate how well the model performs, we need to look at some metrics generated by scoring the validation dataset. From the **Model Scoring & Evaluation** section, drag an **Evaluate Model** module to the canvas, under the **Score Model** module, and connect the output of the **Score Model** module to the **Score dataset** (left) input of the **Evaluate Model** module.
+1. Search for the **Train Model** component and drag it onto the canvas, under the **Split Data** component. Then connect the *Result dataset1* (left) output of the **Split Data** component to the *Dataset* (right) input of the **Train Model** component.
+2. The model we're training will predict the **Diabetic** value, so select the **Train Model** component and modify its settings to set the **Label column** to  **Diabetic** (matching the case and spelling exactly!)
+3. The **Diabetic** label the model will predict is a binary column (1 for patients who have diabetes, 0 for patients who don't), so we need to train the model using a *classification* algorithm. Search for the **Two-Class Logistic Regression** component and drag and drop it onto the canvas, to the left of the **Split Data** component and above the **Train Model** component. Then connect its output to the **Untrained model** (left) input of the **Train Model** component.
+4. To test the trained model, we need to use it to score the validation dataset we held back when we split the original data. Search for the **Score Model** component and drag and drop it onto the canvas, below the **Train Model** component. Then connect the output of the **Train Model** component to the **Trained model** (left) input of the **Score Model** component; and drag the **Results dataset2** (right) output of the **Split Data** component to the **Dataset** (right) input of the **Score Model** component.
+5. To evaluate how well the model performs, we need to look at some metrics generated by scoring the validation dataset. Search for the **Evaluate Model** component and drag it to the canvas, under the **Score Model** component, and connect the output of the **Score Model** component to the **Score dataset** (left) input of the **Evaluate Model** component.
 
 ## Run the training pipeline
 
@@ -111,10 +111,10 @@ With the data flow steps defined, you're now ready to run the training pipeline 
     >
     > While it's running, you can view the pipeline and experiment that have been created in the **Pipelines** and **Experiments** pages. Switch back to the **Visual Diabetes Training** pipeline on the **Designer** page when you're done.
 
-3. After the **Normalize Data** module has completed, select it, and in the **Settings** pane, on the **Outputs + logs** tab, under **Data outputs** in the **Transformed dataset** section, click the **Preview data** icon, and note that you can view statistics and distribution visualizations for the transformed columns.
-4. Close the **Normalize Data** visualizations and wait for the rest of the modules to complete. Then visualize the output of the **Evaluate Model** module to see the performance metrics for the model.
+3. After the **Normalize Data** component has completed, select it, and in the **Settings** pane, on the **Outputs + logs** tab, under **Data outputs** in the **Transformed dataset** section, click the **Preview data** icon, and note that you can view statistics and distribution visualizations for the transformed columns.
+4. Close the **Normalize Data** visualizations and wait for the rest of the components to complete. Then visualize the output of the **Evaluate Model** component to see the performance metrics for the model.
 
-    **Note**: The performance of this model isn't all that great, partly because we performed only minimal feature engineering and pre-processing. You could try some different classification algorithms and compare the results (you can connect the outputs of the **Split Data** module to multiple **Train Model** and **Score Model** modules, and you can connect a second scored model to the **Evaluate Model** module to see a side-by-side comparison). The point of the exercise is simply to introduce you to the designer interface, not to train a perfect model!
+    **Note**: The performance of this model isn't all that great, partly because we performed only minimal feature engineering and pre-processing. You could try some different classification algorithms and compare the results (you can connect the outputs of the **Split Data** component to multiple **Train Model** and **Score Model** components, and you can connect a second scored model to the **Evaluate Model** component to see a side-by-side comparison). The point of the exercise is simply to introduce you to the designer interface, not to train a perfect model!
 
 ## Create an inference pipeline
 
@@ -123,7 +123,7 @@ Now that you have used a *training pipeline* to train a model, you can create an
 1. In the **Create inference pipeline** drop-down list, click **Real-time inference pipeline**. After a few seconds, a new version of your pipeline named **Visual Diabetes Training-real time inference** will be opened.
 2. Rename the new pipeline to **Predict Diabetes**, and then review the new pipeline. Note that the normalization transformation and the trained model have been encapsulated in this pipeline so that the statistics from your training data will be used to normalize any new data values, and the trained model will be used to score the new data.
 3. Note that the inference pipeline assumes that new data will match the schema of the original training data, so the **diabetes dataset** dataset from the training pipeline is included. However, this input data includes the **Diabetic** label that the model predicts, which is unintuitive to include in new patient data for which a diabetes prediction has not yet been made.
-4. Delete the **diabetes dataset** dataset from the inference pipeline and replace it with an **Enter Data Manually** module from the **Data Input and Output** section; connecting it to the same **dataset** input of the **Apply Transformation** module as the **Web Service Input**. Then modify the settings of the **Enter Data Manually** module to use the following CSV input, which includes feature values without labels for three new patient observations:
+4. Delete the **diabetes dataset** dataset from the inference pipeline and replace it with an **Enter Data Manually** component; connecting it to the same **dataset** input of the **Apply Transformation** component as the **Web Service Input**. Then modify the settings of the **Enter Data Manually** component to use the following CSV input, which includes feature values without labels for three new patient observations:
 
 ```CSV
 PatientID,Pregnancies,PlasmaGlucose,DiastolicBloodPressure,TricepsThickness,SerumInsulin,BMI,DiabetesPedigree,Age
@@ -132,8 +132,8 @@ PatientID,Pregnancies,PlasmaGlucose,DiastolicBloodPressure,TricepsThickness,Seru
 1228510,4,115,50,29,243,34.69215364,0.741159926,59
 ```
 
-5. The inference pipeline includes the **Evaluate Model** module, which is not useful when predicting from new data, so delete this module.
-6. The output from the **Score Model** module includes all of the input features as well as the predicted label and probability score. To limit the output to only the prediction and probability, delete the connection between the **Score Model** module and the **Web Service Output**, add an **Execute Python Script** module from the **Python Language** section, connect the output from the **Score Model** module to the **Dataset1** (left-most) input of the **Execute Python Script**, and connect the output of the **Execute Python Script** module to the **Web Service Output**. Then modify the settings of the **Execute Python Script** module to use the following code (replacing all existing code):
+5. The inference pipeline includes the **Evaluate Model** component, which is not useful when predicting from new data, so delete this component.
+6. The output from the **Score Model** component includes all of the input features as well as the predicted label and probability score. To limit the output to only the prediction and probability, delete the connection between the **Score Model** component and the **Web Service Output**, add an **Execute Python Script** component. Connect the output from the **Score Model** component to the **Dataset1** (left-most) input of the **Execute Python Script**, and connect the output of the **Execute Python Script** component to the **Web Service Output**. Then modify the settings of the **Execute Python Script** component to use the following code (replacing all existing code):
 
 ```Python
 import pandas as pd
@@ -146,7 +146,7 @@ def azureml_main(dataframe1 = None, dataframe2 = None):
                             inplace=True)
     return scored_results
 ```
-> **Note**: After pasting the code in the **Execute Python Script** module, verify that the code looks similar to the code above. Indentations are important in Python and the module will fail if the indentations are not copied correctly. 
+> **Note**: After pasting the code in the **Execute Python Script** component, verify that the code looks similar to the code above. Indentations are important in Python and the component will fail if the indentations are not copied correctly. 
 
 7. Verify that your pipeline looks similar to the following:
 
@@ -160,7 +160,7 @@ Now you have an inference pipeline for real-time inferencing, which you can depl
 
 > **Note**: In this exercise, you'll deploy the web service to to an Azure Container Instance (ACI). This type of compute is created dynamically, and is useful for development and testing. For production, you should create an *inference cluster*, which provide an Azure Kubernetes Service (AKS) cluster that provides better scalability and security.
 
-1. If the **Predict Diabetes** inference pipeline has not yet finished running, await it's completion. Then visualize the **Result dataset** output of the **Execute Python Script** module to see the predicted labels and probabilities for the three patient observations in the input data.
+1. If the **Predict Diabetes** inference pipeline has not yet finished running, await it's completion. Then visualize the **Result dataset** output of the **Execute Python Script** component to see the predicted labels and probabilities for the three patient observations in the input data.
 2. At the top right, click **Deploy**, and deploy a new real-time endpoint, using the following settings:
     -  **Name**: designer-predict-diabetes
     -  **Description**: Predict diabetes.
