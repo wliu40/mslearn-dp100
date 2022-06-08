@@ -79,7 +79,7 @@ In Azure Machine Learning, operations that you run are called *experiments*. Fol
     - **Task type and settings**:
         - **Task type**: Classification
         - Select **View additional configuration settings** to open **Additional configurations**:
-            - **Primary metric**: Select **AUC_Weighted** *(more about this metric later!)*
+            - **Primary metric**: Select **AUC Weighted** *(more about this metric later!)*
             - **Explain best model**: Selected - *this option causes automated machine learning to calculate feature importance for the best model; making it possible to determine the influence of each feature on the predicted label.*
             - **Use all supported models**: <u>Un</u>selected - we'll restrict the experiment to try a few specific algorithms.
             - **Allowed models**: Select only **LogisticRegression** and **RandomForest**. These will be the only algorithms tried in the experiment.
@@ -101,7 +101,7 @@ In Azure Machine Learning, operations that you run are called *experiments*. Fol
 
 After the experiment has finished; you can review the best performing model that was generated (note that in this case, we used exit criteria to stop the experiment - so the "best" model found by the experiment may not be the best possible model, just the best one found within the time and metric constraints allowed for this exercise!).
 
-1. On the **Details** tab of the automated machine learning run, note the best model summary.
+1. On the **Overview** tab of the automated machine learning run, note the best model summary.
 2. Select the **Algorithm name** for the best model to view the child-run that produced it.
 
     The best model is identified based on the evaluation metric you specified (*AUC_Weighted*). To calculate this metric, the training process used some of the data to train the model, and applied a technique called *cross-validation* to iteratively test the trained model with data it wasn't trained with and compare the predicted value with the actual known value. From these comparisons, a *confusion matrix* of true-positives, false-positives,true-negatives, and false-negatives is tabulated and additional classification metrics calculated - including a Receiving Operator Curve (ROC) chart that compares the True-Positive rate and False-Positive rate. The area under this curve (AUC) us a common metric used to evaluate classification performance.
@@ -115,7 +115,7 @@ After you've used automated machine learning to train some models, you can deplo
 
 > **Note**: In Azure Machine Learning, you can deploy a service as an Azure Container Instances (ACI) or to an Azure Kubernetes Service (AKS) cluster. For production scenarios, an AKS deployment is recommended, for which you must create an *inference cluster* compute target. In this exercise, you'll use an ACI service, which is a suitable deployment target for testing, and does not require you to create an inference cluster.
 
-1. Select the **Details** tab for the run that produced the best model.
+1. Select the **Overview** tab for the run that produced the best model.
 2. From the **Deploy** option, use the **Deploy to web service** button to deploy the model with the following settings:
     - **Name**: auto-predict-diabetes
     - **Description**: Predict diabetes
