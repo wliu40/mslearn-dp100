@@ -37,7 +37,7 @@ To use automated machine learning, you require compute on which to run the model
 Now that you have some compute resources that you can use to process data, you'll need a way to store and ingest the data to be processed.
 
 1. View the comma-separated data at https://aka.ms/diabetes-data in your web browser. Then save this as a local file named **diabetes.csv** (it doesn't matter where you save it).
-2. In Azure Machine Learning studio, view the **Datasets** page. Datasets represent specific data files or tables that you plan to work with in Azure ML.
+2. In Azure Machine Learning studio, view the **Data** page. Datasets represent specific data files or tables that you plan to work with in Azure ML.
 3. Create a new dataset from local files, using the following settings:
     * **Basic Info**:
         * **Name**: diabetes dataset
