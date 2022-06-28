@@ -31,7 +31,7 @@ To use Azure Machine Learning designer, you require compute on which to run the 
 
 Now that you have some compute resources that you can use to run a training pipeline, you'll need some data to train the model.
 
-1. In Azure Machine Learning studio, view the **Datasets** page. Datasets represent specific data files or tables that you plan to work with in Azure ML.
+1. In Azure Machine Learning studio, view the **Data** page. Datasets represent specific data files or tables that you plan to work with in Azure ML.
 2. If you have previously created the **diabetes dataset** dataset, open it. Otherwise, create a new dataset from web files, using the following settings, and then open it:
     * **Basic Info**:
         * **Web URL**: https://aka.ms/diabetes-data
