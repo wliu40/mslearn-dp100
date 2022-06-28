@@ -58,7 +58,7 @@ To get started with designer, first you must create a pipeline and add the datas
 
 1. In Azure Machine Learning studio, view the **Designer** page and create a new pipeline.
 2. Change the default pipeline name (**Pipeline-Created-on-*date***) to **Visual Diabetes Training** by clicking the **&#9881;** icon at the right to open the **Settings** pane.
-3. Note that you need to specify a compute target on which to run the pipeline. In the **Settings** pane, click **Select compute target** and select your compute cluster.
+3. Note that you need to specify a compute target on which to run the pipeline. In the **Settings** pane, click **Select compute type** and select Compute cluster, click Select Azure ML compute cluster and select your computer cluster and close Settings.
 4. On the left side of the designer, select the **Data** tab, and drag the **diabetes dataset** dataset onto the canvas.
 5. Select the **diabetes dataset** component on the canvas. Then right-click it, and select **Preview data**.
 6. In the DatasetOutput pane, select the **Profile** tab.
