@@ -55,11 +55,13 @@ One of the benefits of Azure Machine Learning is the ability to create cloud-bas
     - **Virtual machine type**: CPU
     - **Virtual machine size**: Standard_DS11_v2
     - **Total Available Quotas**: This shows dedicated cores available.
-    - **Show advanced settings**: Note the following settings, but do not select them: 
+    - **Show advanced settings**: Note the following settings, but do not select them:
         - **Enable SSH access**: Unselected *(you can use this to enable direct access to the virtual machine using an SSH client)*
         - **Enable virtual network**: Unselected *(you would typically use this in an enterprise environment to enhance network security)*
         - **Assign to another user**: Unselected *(you can use this to assign a compute instance to a data scientist)*
-3.Wait for the compute instance to start and its state to change to **Running**.
+        - **Provision with setup script**: Unselected *(you can use this to add a script to run on the remote instance when created)*
+
+3. Wait for the compute instance to start and its state to change to **Running**.
 
 > **Note**:
 > Compute instances and clusters are based on standard Azure virtual machine images. For this exercise, the *Standard_DS11_v2* image is recommended to achieve the optimal balance of cost and performance. If your subscription has a quota that does not include this image, choose an alternative image; but bear in mind that a larger image may incur higher cost and a smaller image may not be sufficient to complete the tasks. Alternatively, ask your Azure administrator to extend your quota.
@@ -77,11 +79,11 @@ A lot of data science and machine learning experimentation is performed by runni
     git clone https://github.com/MicrosoftLearning/mslearn-dp100 mslearn-dp100
     ```
 
-4. When the command has completed, in the **Files** pane, click **&#8635;** to refresh the view and verify that a new **/users/*your-user-name*/mslearn-dp100** folder has been created. This folder contains multiple **.ipynb** notebook files.
-5. Close the terminal pane, terminating the session.
-6. In the **/users/*your-user-name*/mslearn-dp100** folder, open the **Get Started with Notebooks** notebook. Then read the notes and follow the instructions it contains.
+5. When the command has completed, in the **Files** pane, click **&#8635;** to refresh the view and verify that a new **/users/*your-user-name*/mslearn-dp100** folder has been created. This folder contains multiple **.ipynb** notebook files.
+6. Close the terminal pane, terminating the session.
+7. In the **/users/*your-user-name*/mslearn-dp100** folder, open the **Get Started with Notebooks** notebook. Then read the notes and follow the instructions it contains.
 
-> **Tip**: To run a code cell, select the cell you want to run and then use the **&#9655;** button to run it. 
+> **Tip**: To run a code cell, select the cell you want to run and then use the **&#9655;** button to run it.
 
 > **New to Python?** Use the [Python cheat sheet](cheat-sheets/dp100-cheat-sheet-python.pdf) to understand the code.
 
