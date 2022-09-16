@@ -69,7 +69,7 @@ To get started with designer, first you must create a pipeline and add the datas
 Before you can train a model, you typically need to apply some preprocessing transformations to the data.
 
 1. In the pane on the left, select the **Component** tab, which contains a wide range of components you can use to transform data before model training. You can search for components at the top of the pane.
-2. Search for the **Normalize Data** component and drag it to the canvas, below the **diabetes dataset** component. Then connect the output from the **diabetes dataset** component to the input of the **Normalize Data** component.
+2. Select **Designer built-in assets only** next to the search field. Then, search for the **Normalize Data** component and drag it to the canvas, below the **diabetes dataset** component. Then connect the output from the **diabetes dataset** component to the input of the **Normalize Data** component.
 3. Select the **Normalize Data** component and view its settings, noting that it requires you to specify the transformation method and the columns to be transformed. Then, leaving the transformation as **ZScore**, edit the columns to includes the following column names:
     * PlasmaGlucose
     * DiastolicBloodPressure
