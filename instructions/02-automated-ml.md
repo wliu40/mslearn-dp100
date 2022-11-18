@@ -13,7 +13,36 @@ In this exercise, you'll use the visual interface for automated machine learning
 
 ## Before you start
 
-If you have not already done so, complete the *[Create an Azure Machine Learning Workspace](01-create-a-workspace.md)* exercise to create an Azure Machine Learning workspace and compute instance, and clone the notebooks required for this exercise.
+You'll need an [Azure subscription](https://azure.microsoft.com/free?azure-portal=true) in which you have administrative-level access.
+
+## Provision an Azure Machine Learning workspace
+
+An Azure Machine Learning *workspace* provides a central place for managing all resources and assets you need to train and manage your models. You can interact with the Azure Machine Learning workspace through the Studio, Python SDK, and Azure CLI. 
+
+You'll use the Azure CLI to provision the workspace and necessary compute, and you'll use the Python SDK to run a command job.
+
+### Create the workspace and compute resources
+
+To create the Azure Machine Learning workspace, a compute instance, and a compute cluster, you'll use the Azure CLI. All necessary commands are grouped in a Shell script for you to execute.
+
+1. In a browser, open the Azure portal at [portal.azure.com](https://portal.azure.com/?azure-portal=true), signing in with your Microsoft account.
+1. Select the \[>_] (*Cloud Shell*) button at the top of the page to the right of the search box. This opens a Cloud Shell pane at the bottom of the portal.
+1. The first time you open the cloud shell, you will be asked to choose the type of shell you want to use (*Bash* or *PowerShell*). Select **Bash**.
+1. If you are asked to create storage for your cloud shell, check that the correct subscription is specified and select **Create storage**. Wait for the storage to be created.
+1. In the terminal, enter the following commands to clone this repo:
+
+    ```bash
+    rm -r mslearn-dp100 -f
+    git clone https://github.com/MicrosoftLearning/mslearn-dp100 mslearn-dp100
+
+1. After the repo has been cloned, enter the following commands to change to the folder for this lab and run the **setup.sh** script it contains:
+    
+    ```bash
+    cd mslearn-dp100
+    ./setup.sh
+    ```
+
+1. Wait for the script to complete - this typically takes around 5-10 minutes. 
 
 ## Configure compute resources
 
@@ -138,11 +167,12 @@ Now that you've deployed a service, you can test it using some simple code.
 4. In the notebook, replace the **ENDPOINT** and **PRIMARY_KEY** placeholders with the values for your service, which you can copy from the **Consume** tab on the page for your endpoint.
 5. Run the code cell and view the output returned by your web service.
 
-## Clean-up
+## Delete Azure resources
 
-The web service you created is hosted in an *Azure Container Instance*. If you don't intend to experiment with it further, you should delete the endpoint to avoid accruing unnecessary Azure usage. You should also stop the compute instance until you need it again.
+When you finish exploring Azure Machine Learning, you should delete the resources you've created to avoid unnecessary Azure costs.
 
-1. In Azure Machine Learning studio, on the **Endpoints** tab, select the **auto-predict-diabetes** endpoint. Then select **Delete** (&#128465;) and confirm that you want to delete the endpoint.
-2. On the **Compute** page, on the **Compute Instances** tab, select your compute instance and then select **Stop**.
-
-> **Note**: Stopping your compute ensures your subscription won't be charged for compute resources. You will however be charged a small amount for data storage as long as the Azure Machine Learning workspace exists in your subscription. If you have finished exploring Azure Machine Learning, you can delete the Azure Machine Learning workspace and associated resources. However, if you plan to complete any other labs in this series, you will need to repeat the *[Create an Azure Machine Learning Workspace](01-create-a-workspace.md)* exercise to create the workspace and prepare the environment first.
+1. Close the Azure Machine Learning Studio tab and return to the Azure portal.
+1. In the Azure portal, on the **Home** page, select **Resource groups**.
+1. Select the **rg-dp100-labs** resource group.
+1. At the top of the **Overview** page for your resource group, select **Delete resource group**. 
+1. Enter the resource group name to confirm you want to delete it, and select **Delete**.

@@ -14,8 +14,8 @@ As its name suggests, a workspace is a centralized place to manage all of the Az
 1. In the [Azure portal](https://portal.azure.com), create a new **Machine Learning** resource, specifying the following settings:
 
     - **Subscription**: *Your Azure subscription*
-    - **Resource group**: *Create or select a resource group*
-    - **Workspace name**: *Enter a unique name for your workspace*
+    - **Resource group**: `rg-dp100-labs`
+    - **Workspace name**: `mlw-dp100-labs`
     - **Region**: *Select the geographical region closest to you*
     - **Storage account**: *Note the default new storage account that will be created for your workspace*
     - **Key vault**: *Note the default new key vault that will be created for your workspace*
@@ -68,7 +68,7 @@ One of the benefits of Azure Machine Learning is the ability to create cloud-bas
 
 ## Clone and run a notebook
 
-A lot of data science and machine learning experimentation is performed by running code in *notebooks*. Your compute instance includes fully featured Python notebook environments (*Jupyter* and *JuypyterLab*) that you can use for extensive work; but for basic notebook editing, you can use the built-in **Notebooks** page in Azure Machine learning studio.
+A lot of data science and machine learning experimentation is performed by running code in *notebooks*. Your compute instance includes fully featured Python notebook environments (*Jupyter* and *JupyterLab*) that you can use for extensive work; but for basic notebook editing, you can use the built-in **Notebooks** page in Azure Machine learning studio.
 
 1. In Azure Machine Learning studio, view the **Notebooks** page.
 2. If a message describing new features is displayed, close it.
@@ -89,11 +89,12 @@ A lot of data science and machine learning experimentation is performed by runni
 
 > **New to machine learning?** Use the [machine learning overview](cheat-sheets/dp100-cheat-sheet-machine-learning.pdf) to get a simplified overview of the machine learning process in Azure Machine Learning.
 
-## Stop your compute instance
+## Delete Azure resources
 
-If you've finished exploring Azure Machine Learning for now, you should shut down your compute instance to avoid incurring unnecessary charges in your Azure subscription.
+When you finish exploring Azure Machine Learning, you should delete the resources you've created to avoid unnecessary Azure costs.
 
-1. In Azure Machine Learning studio, on the **Compute** page, select your compute instance.
-2. Click **Stop** to stop your compute instance. When it has shut down, its status will change to **Stopped**.
-
-> **Note**: Stopping your compute ensures your subscription won't be charged for compute resources. You will however be charged a small amount for data storage as long as the Azure Machine Learning workspace exists in your subscription. If you have finished exploring Azure Machine Learning, you can delete the Azure Machine Learning workspace and associated resources. However, if you plan to complete any other labs in this series, you will need to repeat this lab to create the workspace and prepare the environment first.
+1. Close the Azure Machine Learning Studio tab and return to the Azure portal.
+1. In the Azure portal, on the **Home** page, select **Resource groups**.
+1. Select the **rg-dp100-labs** resource group.
+1. At the top of the **Overview** page for your resource group, select **Delete resource group**. 
+1. Enter the resource group name to confirm you want to delete it, and select **Delete**.

@@ -180,11 +180,12 @@ Now you can test your deployed service from a client application - in this case,
 6. In the notebook, replace the **ENDPOINT** and **PRIMARY_KEY** placeholders with the values for your service, which you can copy from the **Consume** tab on the page for your endpoint.
 7. Run the code cell and view the output returned by your web service.
 
-## Clean-up
+## Delete Azure resources
 
-The web service you created is hosted in an *Azure Container Instance*. If you don't intend to experiment with it further, you should delete the endpoint to avoid accruing unnecessary Azure usage. You should also stop the compute instance until you need it again.
+When you finish exploring Azure Machine Learning, you should delete the resources you've created to avoid unnecessary Azure costs.
 
-1. In Azure Machine Learning studio, on the **Endpoints** tab, select the **designer-predict-diabetes** endpoint. Then click the **Delete** (&#128465;) button and confirm that you want to delete the endpoint.
-2. If you're finished working with Azure Machine Learning for now, on the **Compute instances** tab, select your compute instance and click **Stop** to shut it down.
-
-> **Note**: Stopping your compute ensures your subscription won't be charged for compute resources. You will however be charged a small amount for data storage as long as the Azure Machine Learning workspace exists in your subscription. If you have finished exploring Azure Machine Learning, you can delete the Azure Machine Learning workspace and associated resources. However, if you plan to complete any other labs in this series, you will need to repeat the *[Create an Azure Machine Learning Workspace](01-create-a-workspace.md)* exercise to create the workspace and prepare the environment first.
+1. Close the Azure Machine Learning Studio tab and return to the Azure portal.
+1. In the Azure portal, on the **Home** page, select **Resource groups**.
+1. Select the **rg-dp100-labs** resource group.
+1. At the top of the **Overview** page for your resource group, select **Delete resource group**. 
+1. Enter the resource group name to confirm you want to delete it, and select **Delete**.
