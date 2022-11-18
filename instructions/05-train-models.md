@@ -14,11 +14,9 @@ You'll need an [Azure subscription](https://azure.microsoft.com/free?azure-porta
 
 An Azure Machine Learning *workspace* provides a central place for managing all resources and assets you need to train and manage your models. You can interact with the Azure Machine Learning workspace through the Studio, Python SDK, and Azure CLI. 
 
-You'll use the Azure CLI to provision the workspace and necessary compute, and you'll use the Python SDK to run a command job.
+### Create the workspace 
 
-### Create the workspace and compute resources
-
-To create the Azure Machine Learning workspace, a compute instance, and a compute cluster, you'll use the Azure CLI. All necessary commands are grouped in a Shell script for you to execute.
+To create the Azure Machine Learning workspace and a compute instance, you'll use the Azure CLI. All necessary commands are grouped in a Shell script for you to execute.
 
 1. In a browser, open the Azure portal at [portal.azure.com](https://portal.azure.com/?azure-portal=true), signing in with your Microsoft account.
 1. Select the \[>_] (*Cloud Shell*) button at the top of the page to the right of the search box. This opens a Cloud Shell pane at the bottom of the portal.
@@ -39,22 +37,29 @@ To create the Azure Machine Learning workspace, a compute instance, and a comput
 
 1. Wait for the script to complete - this typically takes around 5-10 minutes. 
 
-## Open Jupyter
+## Clone the lab materials
 
-While you can use the **Notebooks** page in Azure Machine Learning studio to run notebooks, it's often more productive to use a more fully-featured notebook development environment like *Jupyter*.
+While you can use the **Notebooks** page in Azure Machine Learning studio to run notebooks, it's often more productive to use a more fully-featured notebook development environment like *Jupyter*. Fortunately, your Azure Machine Learning compute instance includes an installation of Jupyter.
+
+> **Tip**: Jupyter Notebook is a commonly used open source tool for data science. You can refer to the [documentation](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html) if you are unfamiliar with it.
 
 1. In [Azure Machine Learning studio](https://ml.azure.com), view the **Compute** page for your workspace; and on the **Compute Instances** tab, start your compute instance if it is not already running.
-2. When the compute instance is running, click the **Jupyter** link to open the Jupyter home page in a new browser tab.
+1. Select **Terminal** under **Applications** to open a terminal, and ensure that its **Compute** is set to your compute instance and that the current path is the **/users/your-user-name** folder.
+1. Enter the following command to clone a Git repository containing notebooks, data, and other files to your workspace:
 
-> **Tip**: New to Python? Use the [Python cheat sheet](cheat-sheets/dp100-cheat-sheet-python.pdf) to understand the code. New to machine learning? Use the [machine learning overview](cheat-sheets/dp100-cheat-sheet-machine-learning.pdf) to get a simplified overview of the machine learning process overview in Azure Machine Learning.
+    ```bash
+    git clone https://github.com/MicrosoftLearning/mslearn-dp100 mslearn-dp100
+    ```
+1. When the command has completed, in the **Notebooks** pane, click **&#8635;** to refresh the view and verify that a new **/users/*your-user-name*/mslearn-dp100** folder has been created. This folder contains multiple **.ipynb** notebook files.
+
+> **Tip**: New to Python? Use the [Python cheat sheet](cheat-sheets/dp100-cheat-sheet-python.pdf) to understand the code.
 
 ## Train models using the Azure Machine Learning SDK
 
 In this exercise, the code to train models is provided in a notebook.
 
-1. In the Jupyter home page, browse to the **/users/*your-user-name*/mslearn-dp100** folder where you cloned the notebook repository, and open the **Train Models** notebook.
+1. In the **Notebooks** page, browse to the **/users/*your-user-name*/mslearn-dp100** folder where you cloned the notebook repository, and open the **Train Models** notebook.
 2. Then read the notes in the notebook, running each code cell in turn.
-3. When you have finished running the code in the notebook, on the **File** menu, click **Close and Halt** to close it and shut down its Python kernel. Then close all Jupyter browser tabs.
 
 ## Delete Azure resources
 
