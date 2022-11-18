@@ -6,9 +6,55 @@ lab:
 
 Experiments are at the core of a data scientist's work. In Azure Machine Learning, an *experiment* is used to run a script or a pipeline, and usually generates outputs and records metrics. In this exercise, you will use the Azure Machine Learning SDK to run Python code as experiments.
 
-## Before You start
+## Before you start
 
-If you have not already done so, complete the *[Create an Azure Machine Learning Workspace](01-create-a-workspace.md)* exercise to create an Azure Machine Learning workspace and compute instance, and clone the notebooks required for this exercise.
+You'll need an [Azure subscription](https://azure.microsoft.com/free?azure-portal=true) in which you have administrative-level access.
+
+## Provision an Azure Machine Learning workspace
+
+An Azure Machine Learning *workspace* provides a central place for managing all resources and assets you need to train and manage your models. You can interact with the Azure Machine Learning workspace through the Studio, Python SDK, and Azure CLI. 
+
+You'll use the Azure CLI to provision the workspace and necessary compute, and you'll use the Python SDK to run a command job.
+
+### Create the workspace and compute resources
+
+To create the Azure Machine Learning workspace, a compute instance, and a compute cluster, you'll use the Azure CLI. All necessary commands are grouped in a Shell script for you to execute.
+
+1. In a browser, open the Azure portal at [portal.azure.com](https://portal.azure.com/?azure-portal=true), signing in with your Microsoft account.
+1. Select the \[>_] (*Cloud Shell*) button at the top of the page to the right of the search box. This opens a Cloud Shell pane at the bottom of the portal.
+1. The first time you open the cloud shell, you will be asked to choose the type of shell you want to use (*Bash* or *PowerShell*). Select **Bash**.
+1. If you are asked to create storage for your cloud shell, check that the correct subscription is specified and select **Create storage**. Wait for the storage to be created.
+1. In the terminal, enter the following commands to clone this repo:
+
+    ```bash
+    rm -r mslearn-dp100 -f
+    git clone https://github.com/MicrosoftLearning/mslearn-dp100 mslearn-dp100
+
+1. After the repo has been cloned, enter the following commands to change to the folder for this lab and run the **setup.sh** script it contains:
+    
+    ```bash
+    cd mslearn-dp100
+    ./setup.sh
+    ```
+
+1. Wait for the script to complete - this typically takes around 5-10 minutes. 
+
+## Clone and run a notebook
+
+A lot of data science and machine learning experimentation is performed by running code in *notebooks*. Your compute instance includes fully featured Python notebook environments (*Jupyter* and *JupyterLab*) that you can use for extensive work; but for basic notebook editing, you can use the built-in **Notebooks** page in Azure Machine learning studio.
+
+1. In Azure Machine Learning studio, view the **Notebooks** page.
+2. If a message describing new features is displayed, close it.
+3. Select **Terminal** or the **Open terminal** icon to open a terminal, and ensure that its **Compute** is set to your compute instance and that the current path is the **/users/your-user-name** folder.
+4. Enter the following command to clone a Git repository containing notebooks, data, and other files to your workspace:
+
+    ```bash
+    git clone https://github.com/MicrosoftLearning/mslearn-dp100 mslearn-dp100
+    ```
+
+5. When the command has completed, in the **Files** pane, click **&#8635;** to refresh the view and verify that a new **/users/*your-user-name*/mslearn-dp100** folder has been created. This folder contains multiple **.ipynb** notebook files.
+6. Close the terminal pane, terminating the session.
+
 
 ## Open Jupyter
 
