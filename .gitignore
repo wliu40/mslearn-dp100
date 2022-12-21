@@ -1,3 +1,4 @@
 .vscode/settings.json
 .azureml
+.ipynb_checkpoints/*
 
