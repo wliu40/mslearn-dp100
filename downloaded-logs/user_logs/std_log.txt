@@ -1,0 +1,12 @@
+/azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61/lib/python3.6/site-packages/paramiko/transport.py:33: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography and will be removed in a future release.
+  from cryptography.hazmat.backends import default_backend
+-c:159: FutureWarning: azureml.core: AzureML support for Python 3.6 is deprecated and will be dropped in an upcoming release. At that point, existing Python 3.6 workflows that use AzureML will continue to work without modification, but Python 3.6 users will no longer get access to the latest AzureML features and bugfixes. We recommend that you upgrade to Python 3.7 or newer. To disable SDK V1 deprecation warning set the environment variable AZUREML_DEPRECATE_WARNING to 'False'
+/azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61/lib/python3.6/site-packages/azureml/mlflow/__init__.py:80: FutureWarning: MLflow support for Python 3.6 is deprecated and will be dropped in an upcoming release. At that point, existing Python 3.6 workflows that use MLflow will continue to work without modification, but Python 3.6 users will no longer get access to the latest MLflow features and bugfixes. We recommend that you upgrade to Python 3.7 or newer.
+  import mlflow
+Analyzing 10000 rows of data
+0    6656
+1    3344
+Name: Diabetic, dtype: int64
+Cleaning up all outstanding Run operations, waiting 300.0 seconds
+1 items cleaning up...
+Cleanup took 0.040215253829956055 seconds

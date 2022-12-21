@@ -1,0 +1,580 @@
+2022/12/21 19:57:44 Downloading source code...
+2022/12/21 19:57:46 Finished downloading source code
+2022/12/21 19:57:46 Creating Docker network: acb_default_network, driver: 'bridge'
+2022/12/21 19:57:46 Successfully set up Docker network: acb_default_network
+2022/12/21 19:57:46 Setting up Docker configuration...
+2022/12/21 19:57:47 Successfully set up Docker configuration
+2022/12/21 19:57:47 Logging in to registry: 1635dc70ed624617b9f7f300373d982e.azurecr.io
+2022/12/21 19:57:47 Successfully logged into 1635dc70ed624617b9f7f300373d982e.azurecr.io
+2022/12/21 19:57:47 Executing step ID: acb_step_0. Timeout(sec): 5400, Working directory: '', Network: 'acb_default_network'
+2022/12/21 19:57:47 Scanning for dependencies...
+2022/12/21 19:57:48 Successfully scanned dependencies
+2022/12/21 19:57:48 Launching container with name: acb_step_0
+Sending build context to Docker daemon  71.68kB
+Step 1/21 : FROM mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:20221101.v1@sha256:4505a963b2d34a42b5eaef48b8142ca98123d05d3a95eee3fe57551570a70e3b
+mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:20221101.v1@sha256:4505a963b2d34a42b5eaef48b8142ca98123d05d3a95eee3fe57551570a70e3b: Pulling from azureml/openmpi4.1.0-ubuntu20.04
+Digest: sha256:4505a963b2d34a42b5eaef48b8142ca98123d05d3a95eee3fe57551570a70e3b
+Status: Downloaded newer image for mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:20221101.v1@sha256:4505a963b2d34a42b5eaef48b8142ca98123d05d3a95eee3fe57551570a70e3b
+ ---> b6fd6a8d28e9
+Step 2/21 : USER root
+ ---> Running in 9cf1fc5efa46
+Removing intermediate container 9cf1fc5efa46
+ ---> 4a617575c6bd
+Step 3/21 : RUN mkdir -p $HOME/.cache
+ ---> Running in 1086f14dd95f
+Removing intermediate container 1086f14dd95f
+ ---> 682eabb2f8bc
+Step 4/21 : WORKDIR /
+ ---> Running in a9d5091ebfd1
+Removing intermediate container a9d5091ebfd1
+ ---> 47e41812e176
+Step 5/21 : COPY azureml-environment-setup/99brokenproxy /etc/apt/apt.conf.d/
+ ---> 6005cdc07d01
+Step 6/21 : RUN if dpkg --compare-versions `conda --version | grep -oE '[^ ]+$'` lt 4.4.11; then conda install conda==4.4.11; fi
+ ---> Running in e0f186c6960a
+Removing intermediate container e0f186c6960a
+ ---> 5521dcb0f67d
+Step 7/21 : COPY azureml-environment-setup/mutated_conda_dependencies.yml azureml-environment-setup/mutated_conda_dependencies.yml
+ ---> 7609931370e3
+Step 8/21 : RUN ldconfig /usr/local/cuda/lib64/stubs && conda env create -p /azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61 -f azureml-environment-setup/mutated_conda_dependencies.yml && rm -rf "$HOME/.cache/pip" && conda clean -aqy && CONDA_ROOT_DIR=$(conda info --root) && rm -rf "$CONDA_ROOT_DIR/pkgs" && find "$CONDA_ROOT_DIR" -type d -name __pycache__ -exec rm -rf {} + && ldconfig
+ ---> Running in 6dd4b06c5a03
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+Downloading and Extracting Packages
+numpy-base-1.19.2    | 4.1 MB    |            |   0% numpy-base-1.19.2    | 4.1 MB    | ##3        |  24% numpy-base-1.19.2    | 4.1 MB    | ########## | 100% numpy-base-1.19.2    | 4.1 MB    | ########## | 100% 
+blas-1.0             | 6 KB      |            |   0% blas-1.0             | 6 KB      | ########## | 100% 
+sqlite-3.23.1        | 808 KB    |            |   0% sqlite-3.23.1        | 808 KB    | ########## | 100% 
+_openmp_mutex-5.1    | 21 KB     |            |   0% _openmp_mutex-5.1    | 21 KB     | ########## | 100% 
+tk-8.6.12            | 3.0 MB    |            |   0% tk-8.6.12            | 3.0 MB    | ########3  |  84% tk-8.6.12            | 3.0 MB    | ########## | 100% 
+readline-7.0         | 848 KB    |            |   0% readline-7.0         | 848 KB    | ########## | 100% 
+wheel-0.37.1         | 33 KB     |            |   0% wheel-0.37.1         | 33 KB     | ########## | 100% 
+_libgcc_mutex-0.1    | 3 KB      |            |   0% _libgcc_mutex-0.1    | 3 KB      | ########## | 100% 
+python-3.6.2         | 23.6 MB   |            |   0% python-3.6.2         | 23.6 MB   | 8          |   9% python-3.6.2         | 23.6 MB   | #####9     |  60% python-3.6.2         | 23.6 MB   | ########## | 100% python-3.6.2         | 23.6 MB   | ########## | 100% 
+libgfortran-ng-7.5.0 | 22 KB     |            |   0% libgfortran-ng-7.5.0 | 22 KB     | ########## | 100% 
+pip-21.2.2           | 1.8 MB    |            |   0% pip-21.2.2           | 1.8 MB    | ########## | 100% pip-21.2.2           | 1.8 MB    | ########## | 100% 
+libstdcxx-ng-11.2.0  | 4.7 MB    |            |   0% libstdcxx-ng-11.2.0  | 4.7 MB    | ########## | 100% libstdcxx-ng-11.2.0  | 4.7 MB    | ########## | 100% 
+pytz-2021.3          | 171 KB    |            |   0% pytz-2021.3          | 171 KB    | ########## | 100% 
+scikit-learn-0.24.2  | 5.2 MB    |            |   0% scikit-learn-0.24.2  | 5.2 MB    | ########## | 100% scikit-learn-0.24.2  | 5.2 MB    | ########## | 100% 
+python-dateutil-2.8. | 233 KB    |            |   0% python-dateutil-2.8. | 233 KB    | ########## | 100% 
+certifi-2021.5.30    | 139 KB    |            |   0% certifi-2021.5.30    | 139 KB    | ########## | 100% 
+scipy-1.5.2          | 14.4 MB   |            |   0% scipy-1.5.2          | 14.4 MB   | #####5     |  56% scipy-1.5.2          | 14.4 MB   | ########## | 100% 
+libgomp-11.2.0       | 474 KB    |            |   0% libgomp-11.2.0       | 474 KB    | ########## | 100% 
+libedit-3.1          | 151 KB    |            |   0% libedit-3.1          | 151 KB    | ########## | 100% 
+zlib-1.2.13          | 103 KB    |            |   0% zlib-1.2.13          | 103 KB    | ########## | 100% 
+mkl-2020.2           | 138.3 MB  |            |   0% mkl-2020.2           | 138.3 MB  | 6          |   7% mkl-2020.2           | 138.3 MB  | #4         |  15% mkl-2020.2           | 138.3 MB  | ##2        |  23% mkl-2020.2           | 138.3 MB  | ###1       |  31% mkl-2020.2           | 138.3 MB  | ####       |  40% mkl-2020.2           | 138.3 MB  | ####8      |  49% mkl-2020.2           | 138.3 MB  | #####7     |  57% mkl-2020.2           | 138.3 MB  | ######6    |  66% mkl-2020.2           | 138.3 MB  | #######4   |  75% mkl-2020.2           | 138.3 MB  | ########3  |  83% mkl-2020.2           | 138.3 MB  | #########3 |  93% mkl-2020.2           | 138.3 MB  | ########## | 100% 
+setuptools-58.0.4    | 788 KB    |            |   0% setuptools-58.0.4    | 788 KB    | ########## | 100% 
+mkl-service-2.3.0    | 52 KB     |            |   0% mkl-service-2.3.0    | 52 KB     | ########## | 100% 
+pandas-1.1.5         | 8.2 MB    |            |   0% pandas-1.1.5         | 8.2 MB    | ########## | 100% pandas-1.1.5         | 8.2 MB    | ########## | 100% 
+mkl_fft-1.3.0        | 170 KB    |            |   0% mkl_fft-1.3.0        | 170 KB    | ########## | 100% 
+threadpoolctl-2.2.0  | 16 KB     |            |   0% threadpoolctl-2.2.0  | 16 KB     | ########## | 100% 
+ncurses-6.0          | 781 KB    |            |   0% ncurses-6.0          | 781 KB    | ########## | 100% ncurses-6.0          | 781 KB    | ########## | 100% 
+xz-5.2.8             | 429 KB    |            |   0% xz-5.2.8             | 429 KB    | ########## | 100% 
+ca-certificates-2022 | 124 KB    |            |   0% ca-certificates-2022 | 124 KB    | ########## | 100% 
+libffi-3.2.1         | 48 KB     |            |   0% libffi-3.2.1         | 48 KB     | ########## | 100% 
+intel-openmp-2022.1. | 4.5 MB    |            |   0% intel-openmp-2022.1. | 4.5 MB    | ########## | 100% intel-openmp-2022.1. | 4.5 MB    | ########## | 100% 
+six-1.16.0           | 18 KB     |            |   0% six-1.16.0           | 18 KB     | ########## | 100% 
+openssl-1.0.2u       | 2.2 MB    |            |   0% openssl-1.0.2u       | 2.2 MB    | ########## | 100% 
+libgcc-ng-11.2.0     | 5.3 MB    |            |   0% libgcc-ng-11.2.0     | 5.3 MB    | ########## | 100% libgcc-ng-11.2.0     | 5.3 MB    | ########## | 100% 
+numpy-1.19.2         | 22 KB     |            |   0% numpy-1.19.2         | 22 KB     | ########## | 100% 
+mkl_random-1.1.1     | 327 KB    |            |   0% mkl_random-1.1.1     | 327 KB    | ########## | 100% 
+libgfortran4-7.5.0   | 995 KB    |            |   0% libgfortran4-7.5.0   | 995 KB    | ########## | 100% 
+joblib-1.0.1         | 208 KB    |            |   0% joblib-1.0.1         | 208 KB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... 
+
+    Installed package of scikit-learn can be accelerated using scikit-learn-intelex.
+    More details are available here: https://intel.github.io/scikit-learn-intelex
+
+    For example:
+
+        $ conda install scikit-learn-intelex
+        $ python -m sklearnex my_application.py
+
+    
+
+done
+Installing pip dependencies: ...working... 
+Ran pip subprocess with arguments:
+['/azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61/bin/python', '-m', 'pip', 'install', '-U', '-r', '/azureml-environment-setup/condaenv.hzq7ok0q.requirements.txt']
+Pip subprocess output:
+Collecting azureml-defaults
+  Downloading azureml_defaults-1.48.0-py3-none-any.whl (2.0 kB)
+Collecting azureml-mlflow
+  Downloading azureml_mlflow-1.48.0-py3-none-any.whl (812 kB)
+Collecting azureml-inference-server-http~=0.7.2
+  Downloading azureml_inference_server_http-0.7.7-py3-none-any.whl (56 kB)
+Collecting azureml-defaults
+  Downloading azureml_defaults-1.47.0-py3-none-any.whl (2.0 kB)
+Collecting azureml-dataset-runtime[fuse]~=1.47.0
+  Downloading azureml_dataset_runtime-1.47.0-py3-none-any.whl (2.2 kB)
+Collecting json-logging-py==0.2
+  Downloading json-logging-py-0.2.tar.gz (3.6 kB)
+Collecting azureml-core~=1.47.0
+  Downloading azureml_core-1.47.0-py3-none-any.whl (3.1 MB)
+Collecting configparser==3.7.4
+  Downloading configparser-3.7.4-py2.py3-none-any.whl (22 kB)
+Collecting azure-storage-blob<=12.13.0,>=12.5.0
+  Downloading azure_storage_blob-12.13.0-py3-none-any.whl (377 kB)
+Collecting azure-identity
+  Downloading azure_identity-1.10.0-py3-none-any.whl (134 kB)
+Collecting mlflow-skinny
+  Downloading mlflow_skinny-1.23.1-py3-none-any.whl (3.2 MB)
+Collecting jsonpickle
+  Downloading jsonpickle-2.2.0-py2.py3-none-any.whl (39 kB)
+Collecting azure-core!=1.22.0,<2.0.0,>=1.8.0
+  Downloading azure_core-1.24.2-py3-none-any.whl (178 kB)
+Collecting msrest>=0.6.18
+  Downloading msrest-0.7.1-py3-none-any.whl (85 kB)
+Collecting azure-mgmt-core<2.0.0,>=1.2.0
+  Downloading azure_mgmt_core-1.3.2-py3-none-any.whl (26 kB)
+Collecting cryptography
+  Downloading cryptography-38.0.4-cp36-abi3-manylinux_2_28_x86_64.whl (4.2 MB)
+Collecting azure-common<2.0.0,>=1.1
+  Downloading azure_common-1.1.28-py2.py3-none-any.whl (14 kB)
+Requirement already satisfied: python-dateutil<3.0.0,>=2.7.3 in /azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61/lib/python3.6/site-packages (from azureml-mlflow->-r /azureml-environment-setup/condaenv.hzq7ok0q.requirements.txt (line 2)) (2.8.2)
+Collecting requests>=2.18.4
+  Downloading requests-2.27.1-py2.py3-none-any.whl (63 kB)
+Collecting typing-extensions>=4.0.1
+  Downloading typing_extensions-4.1.1-py3-none-any.whl (26 kB)
+Requirement already satisfied: six>=1.11.0 in /azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61/lib/python3.6/site-packages (from azure-core!=1.22.0,<2.0.0,>=1.8.0->azureml-mlflow->-r /azureml-environment-setup/condaenv.hzq7ok0q.requirements.txt (line 2)) (1.16.0)
+Collecting msal<2.0.0,>=1.15.0
+  Downloading msal-1.20.0-py2.py3-none-any.whl (90 kB)
+Collecting azure-mgmt-keyvault<11.0.0,>=0.40.0
+  Downloading azure_mgmt_keyvault-10.0.0-py3-none-any.whl (489 kB)
+Collecting pkginfo
+  Downloading pkginfo-1.9.2-py3-none-any.whl (26 kB)
+Collecting azure-mgmt-authorization<3,>=0.40.0
+  Downloading azure_mgmt_authorization-2.0.0-py2.py3-none-any.whl (465 kB)
+Collecting azure-graphrbac<1.0.0,>=0.40.0
+  Downloading azure_graphrbac-0.61.1-py2.py3-none-any.whl (141 kB)
+Collecting humanfriendly<11.0,>=4.7
+  Downloading humanfriendly-10.0-py2.py3-none-any.whl (86 kB)
+Collecting azure-mgmt-resource<22.0.0,>=15.0.0
+  Downloading azure_mgmt_resource-21.1.0-py3-none-any.whl (1.8 MB)
+Requirement already satisfied: pytz in /azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61/lib/python3.6/site-packages (from azureml-core~=1.47.0->azureml-defaults->-r /azureml-environment-setup/condaenv.hzq7ok0q.requirements.txt (line 1)) (2021.3)
+Collecting knack~=0.10.0
+  Downloading knack-0.10.1-py3-none-any.whl (61 kB)
+Collecting azure-mgmt-containerregistry<11,>=8.2.0
+  Downloading azure_mgmt_containerregistry-10.0.0-py3-none-any.whl (1.2 MB)
+Collecting adal<=1.2.7,>=1.2.0
+  Downloading adal-1.2.7-py2.py3-none-any.whl (55 kB)
+Collecting ndg-httpsclient<=0.5.1
+  Downloading ndg_httpsclient-0.5.1-py3-none-any.whl (34 kB)
+Collecting backports.tempfile
+  Downloading backports.tempfile-1.0-py2.py3-none-any.whl (4.4 kB)
+Collecting argcomplete<3
+  Downloading argcomplete-2.0.0-py2.py3-none-any.whl (37 kB)
+Collecting docker<7.0.0
+  Downloading docker-5.0.3-py2.py3-none-any.whl (146 kB)
+Collecting pyopenssl<23.0.0
+  Downloading pyOpenSSL-22.1.0-py3-none-any.whl (57 kB)
+Collecting jmespath<2.0.0
+  Downloading jmespath-0.10.0-py2.py3-none-any.whl (24 kB)
+Collecting paramiko<3.0.0,>=2.0.8
+  Downloading paramiko-2.12.0-py2.py3-none-any.whl (213 kB)
+Collecting SecretStorage<4.0.0
+  Downloading SecretStorage-3.3.3-py3-none-any.whl (15 kB)
+Collecting urllib3<2.0.0,>=1.23
+  Downloading urllib3-1.26.13-py2.py3-none-any.whl (140 kB)
+Collecting PyJWT<3.0.0
+  Downloading PyJWT-2.4.0-py3-none-any.whl (18 kB)
+Collecting azure-mgmt-storage<21.0.0,>=16.0.0
+  Downloading azure_mgmt_storage-20.0.0-py3-none-any.whl (2.0 MB)
+Collecting msal-extensions<=1.0.0,>=0.3.0
+  Downloading msal_extensions-1.0.0-py2.py3-none-any.whl (19 kB)
+Collecting contextlib2<22.0.0
+  Downloading contextlib2-21.6.0-py2.py3-none-any.whl (13 kB)
+Collecting packaging<22.0,>=20.0
+  Downloading packaging-21.3-py3-none-any.whl (40 kB)
+Collecting pathspec<1.0.0
+  Downloading pathspec-0.9.0-py2.py3-none-any.whl (31 kB)
+Collecting msrestazure<=0.6.4,>=0.4.33
+  Downloading msrestazure-0.6.4-py2.py3-none-any.whl (40 kB)
+Collecting importlib-metadata<5,>=0.23
+  Downloading importlib_metadata-4.8.3-py3-none-any.whl (17 kB)
+Requirement already satisfied: numpy!=1.19.3 in /azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61/lib/python3.6/site-packages (from azureml-dataset-runtime[fuse]~=1.47.0->azureml-defaults->-r /azureml-environment-setup/condaenv.hzq7ok0q.requirements.txt (line 1)) (1.19.2)
+Collecting azureml-dataprep<4.6.0a,>=4.5.0a
+  Downloading azureml_dataprep-4.5.7-py3-none-any.whl (43.4 MB)
+Collecting pyarrow<=9.0.0,>=0.17.0
+  Downloading pyarrow-6.0.1-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25.6 MB)
+Collecting fusepy<4.0.0,>=3.0.1
+  Downloading fusepy-3.0.1.tar.gz (11 kB)
+Collecting azureml-dataprep-native<39.0.0,>=38.0.0
+  Downloading azureml_dataprep_native-38.0.0-cp36-cp36m-manylinux1_x86_64.whl (1.3 MB)
+Collecting azureml-dataprep-rslex~=2.11.0dev0
+  Downloading azureml_dataprep_rslex-2.11.4-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (15.3 MB)
+Collecting dotnetcore2<4.0.0,>=3.0.0
+  Downloading dotnetcore2-3.1.23-py3-none-manylinux1_x86_64.whl (31.1 MB)
+Collecting pyyaml<7.0.0,>=5.1.0
+  Downloading PyYAML-6.0-cp36-cp36m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (603 kB)
+Collecting azure-identity
+  Downloading azure_identity-1.7.0-py2.py3-none-any.whl (129 kB)
+Collecting jsonschema
+  Downloading jsonschema-3.2.0-py2.py3-none-any.whl (56 kB)
+Collecting cloudpickle<3.0.0,>=1.1.0
+  Downloading cloudpickle-2.2.0-py3-none-any.whl (25 kB)
+Collecting msal-extensions<=1.0.0,>=0.3.0
+  Downloading msal_extensions-0.3.1-py2.py3-none-any.whl (18 kB)
+Collecting inference-schema~=1.4.0
+  Downloading inference_schema-1.4.2.1-py3-none-any.whl (21 kB)
+Collecting gunicorn==20.1.0
+  Downloading gunicorn-20.1.0-py3-none-any.whl (79 kB)
+Collecting flask-cors~=3.0.1
+  Downloading Flask_Cors-3.0.10-py2.py3-none-any.whl (14 kB)
+Collecting opencensus-ext-azure~=1.1.0
+  Downloading opencensus_ext_azure-1.1.7-py2.py3-none-any.whl (42 kB)
+Requirement already satisfied: setuptools>=3.0 in /azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61/lib/python3.6/site-packages (from gunicorn==20.1.0->azureml-inference-server-http~=0.7.2->azureml-defaults->-r /azureml-environment-setup/condaenv.hzq7ok0q.requirements.txt (line 1)) (58.0.4)
+Collecting cffi>=1.12
+  Downloading cffi-1.15.1-cp36-cp36m-manylinux_2_5_x86_64.manylinux1_x86_64.whl (402 kB)
+Collecting pycparser
+  Downloading pycparser-2.21-py2.py3-none-any.whl (118 kB)
+Collecting websocket-client>=0.32.0
+  Downloading websocket_client-1.3.1-py3-none-any.whl (54 kB)
+Collecting distro>=1.2.0
+  Downloading distro-1.8.0-py3-none-any.whl (20 kB)
+Collecting Flask>=0.9
+  Downloading Flask-2.0.3-py3-none-any.whl (95 kB)
+Collecting click>=7.1.2
+  Downloading click-8.0.4-py3-none-any.whl (97 kB)
+Collecting Werkzeug>=2.0
+  Downloading Werkzeug-2.0.3-py3-none-any.whl (289 kB)
+Collecting itsdangerous>=2.0
+  Downloading itsdangerous-2.0.1-py3-none-any.whl (18 kB)
+Collecting Jinja2>=3.0
+  Downloading Jinja2-3.0.3-py3-none-any.whl (133 kB)
+Collecting zipp>=0.5
+  Downloading zipp-3.6.0-py3-none-any.whl (5.3 kB)
+Collecting wrapt<=1.12.1,>=1.11.1
+  Downloading wrapt-1.12.1.tar.gz (27 kB)
+Collecting MarkupSafe>=2.0
+  Downloading MarkupSafe-2.0.1-cp36-cp36m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (30 kB)
+Collecting pygments
+  Downloading Pygments-2.13.0-py3-none-any.whl (1.1 MB)
+Collecting tabulate
+  Downloading tabulate-0.8.10-py3-none-any.whl (29 kB)
+Collecting portalocker<3,>=1.0
+  Downloading portalocker-2.6.0-py2.py3-none-any.whl (15 kB)
+Collecting isodate>=0.6.0
+  Downloading isodate-0.6.1-py2.py3-none-any.whl (41 kB)
+Requirement already satisfied: certifi>=2017.4.17 in /azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61/lib/python3.6/site-packages (from msrest>=0.6.18->azureml-mlflow->-r /azureml-environment-setup/condaenv.hzq7ok0q.requirements.txt (line 2)) (2021.5.30)
+Collecting requests-oauthlib>=0.5.0
+  Downloading requests_oauthlib-1.3.1-py2.py3-none-any.whl (23 kB)
+Collecting pyasn1>=0.1.1
+  Downloading pyasn1-0.4.8-py2.py3-none-any.whl (77 kB)
+Collecting opencensus<1.0.0,>=0.11.0
+  Downloading opencensus-0.11.0-py2.py3-none-any.whl (128 kB)
+Collecting psutil>=5.6.3
+  Downloading psutil-5.9.4-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (280 kB)
+Collecting google-api-core<3.0.0,>=1.0.0
+  Downloading google_api_core-2.8.2-py3-none-any.whl (114 kB)
+Collecting opencensus-context>=0.1.3
+  Downloading opencensus_context-0.1.3-py2.py3-none-any.whl (5.1 kB)
+Collecting google-auth<3.0dev,>=1.25.0
+  Downloading google_auth-2.15.0-py2.py3-none-any.whl (177 kB)
+Collecting googleapis-common-protos<2.0dev,>=1.56.2
+  Downloading googleapis_common_protos-1.56.3-py2.py3-none-any.whl (211 kB)
+Collecting protobuf<5.0.0dev,>=3.15.0
+  Downloading protobuf-3.19.6-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.1 MB)
+Collecting pyasn1-modules>=0.2.1
+  Downloading pyasn1_modules-0.2.8-py2.py3-none-any.whl (155 kB)
+Collecting rsa<5,>=3.1.4
+  Downloading rsa-4.9-py3-none-any.whl (34 kB)
+Collecting cachetools<6.0,>=2.0.0
+  Downloading cachetools-4.2.4-py3-none-any.whl (10 kB)
+Collecting contextvars
+  Downloading contextvars-2.4.tar.gz (9.6 kB)
+Collecting pyparsing!=3.0.5,>=2.0.2
+  Downloading pyparsing-3.0.7-py3-none-any.whl (98 kB)
+Collecting pynacl>=1.0.1
+  Downloading PyNaCl-1.5.0-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl (856 kB)
+Collecting bcrypt>=3.1.3
+  Downloading bcrypt-4.0.1-cp36-abi3-manylinux_2_28_x86_64.whl (593 kB)
+Collecting charset-normalizer~=2.0.0
+  Downloading charset_normalizer-2.0.12-py3-none-any.whl (39 kB)
+Collecting idna<4,>=2.5
+  Downloading idna-3.4-py3-none-any.whl (61 kB)
+Collecting oauthlib>=3.0.0
+  Downloading oauthlib-3.2.2-py3-none-any.whl (151 kB)
+Collecting PySocks!=1.5.7,>=1.5.6
+  Downloading PySocks-1.7.1-py3-none-any.whl (16 kB)
+Collecting jeepney>=0.6
+  Downloading jeepney-0.7.1-py3-none-any.whl (54 kB)
+Collecting dataclasses
+  Downloading dataclasses-0.8-py3-none-any.whl (19 kB)
+Collecting backports.weakref
+  Downloading backports.weakref-1.0.post1-py2.py3-none-any.whl (5.2 kB)
+Collecting immutables>=0.9
+  Downloading immutables-0.19-cp36-cp36m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (116 kB)
+Collecting pyrsistent>=0.14.0
+  Downloading pyrsistent-0.18.0-cp36-cp36m-manylinux1_x86_64.whl (117 kB)
+Collecting attrs>=17.4.0
+  Downloading attrs-22.2.0-py3-none-any.whl (60 kB)
+Collecting databricks-cli>=0.8.7
+  Downloading databricks-cli-0.17.4.tar.gz (82 kB)
+Collecting entrypoints
+  Downloading entrypoints-0.4-py3-none-any.whl (5.3 kB)
+Collecting gitpython>=2.1.0
+  Downloading GitPython-3.1.18-py3-none-any.whl (170 kB)
+Collecting gitdb<5,>=4.0.1
+  Downloading gitdb-4.0.9-py3-none-any.whl (63 kB)
+Collecting smmap<6,>=3.0.1
+  Downloading smmap-5.0.0-py3-none-any.whl (24 kB)
+Building wheels for collected packages: json-logging-py, fusepy, wrapt, contextvars, databricks-cli
+  Building wheel for json-logging-py (setup.py): started
+  Building wheel for json-logging-py (setup.py): finished with status 'done'
+  Created wheel for json-logging-py: filename=json_logging_py-0.2-py3-none-any.whl size=3924 sha256=d42b8e41c084b147e2bf4c16d115091a0b13300213162cb486e8e6ea34e435b9
+  Stored in directory: /root/.cache/pip/wheels/e2/1d/52/535a274b9c2ce7d4064838f2bdb62013801281ef7d7f21e2ee
+  Building wheel for fusepy (setup.py): started
+  Building wheel for fusepy (setup.py): finished with status 'done'
+  Created wheel for fusepy: filename=fusepy-3.0.1-py3-none-any.whl size=10503 sha256=ade2d5176bec06bb8f552d06ea12de1b68d1fb6fba63dd3eb61bf7063bc3669d
+  Stored in directory: /root/.cache/pip/wheels/21/5c/83/1dd7e8a232d12227e5410120f4374b33adeb4037473105b079
+  Building wheel for wrapt (setup.py): started
+  Building wheel for wrapt (setup.py): finished with status 'done'
+  Created wheel for wrapt: filename=wrapt-1.12.1-cp36-cp36m-linux_x86_64.whl size=76183 sha256=1467d1ba28b27fa7616c15050074825c291ae98695aec2452dbd4e92ecbb8dc2
+  Stored in directory: /root/.cache/pip/wheels/32/42/7f/23cae9ff6ef66798d00dc5d659088e57dbba01566f6c60db63
+  Building wheel for contextvars (setup.py): started
+  Building wheel for contextvars (setup.py): finished with status 'done'
+  Created wheel for contextvars: filename=contextvars-2.4-py3-none-any.whl size=7681 sha256=80ab9cb27ba3aadccd8d388644952cb82595113d6f4ecd90d44a3f311db2e420
+  Stored in directory: /root/.cache/pip/wheels/41/11/53/911724983aa48deb94792432e14e518447212dd6c5477d49d3
+  Building wheel for databricks-cli (setup.py): started
+  Building wheel for databricks-cli (setup.py): finished with status 'done'
+  Created wheel for databricks-cli: filename=databricks_cli-0.17.4-py3-none-any.whl size=142894 sha256=83140e896e56f1556d11904c17ee425b3a11d0ae761f270ab0cc806d10510e98
+  Stored in directory: /root/.cache/pip/wheels/3a/02/39/c20d43e7613f33717df248d07e972f02c706054d69fd20029e
+Successfully built json-logging-py fusepy wrapt contextvars databricks-cli
+Installing collected packages: pycparser, cffi, urllib3, PyJWT, idna, cryptography, charset-normalizer, typing-extensions, requests, pyasn1, zipp, rsa, pyasn1-modules, protobuf, portalocker, oauthlib, msal, immutables, cachetools, requests-oauthlib, pyrsistent, msal-extensions, MarkupSafe, isodate, importlib-metadata, googleapis-common-protos, google-auth, distro, dataclasses, contextvars, azure-core, attrs, Werkzeug, smmap, pyyaml, opencensus-context, msrest, jsonschema, Jinja2, itsdangerous, google-api-core, dotnetcore2, cloudpickle, click, azureml-dataprep-rslex, azureml-dataprep-native, azure-identity, adal, wrapt, websocket-client, tabulate, PySocks, pyparsing, pyopenssl, pynacl, pygments, pyarrow, psutil, opencensus, msrestazure, jmespath, jeepney, gitdb, Flask, bcrypt, backports.weakref, azureml-dataprep, azure-mgmt-core, azure-common, argcomplete, SecretStorage, pkginfo, pathspec, paramiko, packaging, opencensus-ext-azure, ndg-httpsclient, knack, jsonpickle, inference-schema, humanfriendly, gunicorn, gitpython, fusepy, flask-cors, entrypoints, docker, databricks-cli, contextlib2, backports.tempfile, azureml-dataset-runtime, azure-mgmt-storage, azure-mgmt-resource, azure-mgmt-keyvault, azure-mgmt-containerregistry, azure-mgmt-authorization, azure-graphrbac, mlflow-skinny, json-logging-py, configparser, azureml-inference-server-http, azureml-core, azure-storage-blob, azureml-mlflow, azureml-defaults
+Successfully installed Flask-2.0.3 Jinja2-3.0.3 MarkupSafe-2.0.1 PyJWT-2.4.0 PySocks-1.7.1 SecretStorage-3.3.3 Werkzeug-2.0.3 adal-1.2.7 argcomplete-2.0.0 attrs-22.2.0 azure-common-1.1.28 azure-core-1.24.2 azure-graphrbac-0.61.1 azure-identity-1.7.0 azure-mgmt-authorization-2.0.0 azure-mgmt-containerregistry-10.0.0 azure-mgmt-core-1.3.2 azure-mgmt-keyvault-10.0.0 azure-mgmt-resource-21.1.0 azure-mgmt-storage-20.0.0 azure-storage-blob-12.13.0 azureml-core-1.47.0 azureml-dataprep-4.5.7 azureml-dataprep-native-38.0.0 azureml-dataprep-rslex-2.11.4 azureml-dataset-runtime-1.47.0 azureml-defaults-1.47.0 azureml-inference-server-http-0.7.7 azureml-mlflow-1.48.0 backports.tempfile-1.0 backports.weakref-1.0.post1 bcrypt-4.0.1 cachetools-4.2.4 cffi-1.15.1 charset-normalizer-2.0.12 click-8.0.4 cloudpickle-2.2.0 configparser-3.7.4 contextlib2-21.6.0 contextvars-2.4 cryptography-38.0.4 databricks-cli-0.17.4 dataclasses-0.8 distro-1.8.0 docker-5.0.3 dotnetcore2-3.1.23 entrypoints-0.4 flask-cors-3.0.10 fusepy-3.0.1 gitdb-4.0.9 gitpython-3.1.18 google-api-core-2.8.2 google-auth-2.15.0 googleapis-common-protos-1.56.3 gunicorn-20.1.0 humanfriendly-10.0 idna-3.4 immutables-0.19 importlib-metadata-4.8.3 inference-schema-1.4.2.1 isodate-0.6.1 itsdangerous-2.0.1 jeepney-0.7.1 jmespath-0.10.0 json-logging-py-0.2 jsonpickle-2.2.0 jsonschema-3.2.0 knack-0.10.1 mlflow-skinny-1.23.1 msal-1.20.0 msal-extensions-0.3.1 msrest-0.7.1 msrestazure-0.6.4 ndg-httpsclient-0.5.1 oauthlib-3.2.2 opencensus-0.11.0 opencensus-context-0.1.3 opencensus-ext-azure-1.1.7 packaging-21.3 paramiko-2.12.0 pathspec-0.9.0 pkginfo-1.9.2 portalocker-2.6.0 protobuf-3.19.6 psutil-5.9.4 pyarrow-6.0.1 pyasn1-0.4.8 pyasn1-modules-0.2.8 pycparser-2.21 pygments-2.13.0 pynacl-1.5.0 pyopenssl-22.1.0 pyparsing-3.0.7 pyrsistent-0.18.0 pyyaml-6.0 requests-2.27.1 requests-oauthlib-1.3.1 rsa-4.9 smmap-5.0.0 tabulate-0.8.10 typing-extensions-4.1.1 urllib3-1.26.13 websocket-client-1.3.1 wrapt-1.12.1 zipp-3.6.0
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.12.0
+  latest version: 22.11.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+[0m
+done
+#
+# To activate this environment, use
+#
+#     $ conda activate /azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+WARNING: /root/.conda/pkgs does not exist
+
+Removing intermediate container 6dd4b06c5a03
+ ---> ff2915163376
+Step 9/21 : ENV PATH /azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61/bin:$PATH
+ ---> Running in 4cd18bd5289e
+Removing intermediate container 4cd18bd5289e
+ ---> d111ffb6b202
+Step 10/21 : COPY azureml-environment-setup/send_conda_dependencies.py azureml-environment-setup/send_conda_dependencies.py
+ ---> c7ba20d0de33
+Step 11/21 : RUN echo "Copying environment context"
+ ---> Running in 36f8d11fedfd
+Copying environment context
+Removing intermediate container 36f8d11fedfd
+ ---> 08b29fe60ce3
+Step 12/21 : COPY azureml-environment-setup/environment_context.json azureml-environment-setup/environment_context.json
+ ---> 72e452c1db7d
+Step 13/21 : RUN python /azureml-environment-setup/send_conda_dependencies.py -p /azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61
+ ---> Running in 94b3809f4f6e
+Report materialized dependencies for the environment
+Reading environment context
+Exporting conda environment
+Sending request with materialized conda environment details
+Successfully sent materialized environment details
+Removing intermediate container 94b3809f4f6e
+ ---> 840cb2a51bfb
+Step 14/21 : ENV AZUREML_CONDA_ENVIRONMENT_PATH /azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61
+ ---> Running in 4a7f848d028a
+Removing intermediate container 4a7f848d028a
+ ---> 83f9f022648e
+Step 15/21 : ENV LD_LIBRARY_PATH /azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61/lib:$LD_LIBRARY_PATH
+ ---> Running in 47b40d010c11
+Removing intermediate container 47b40d010c11
+ ---> 0d3f1ee95b2e
+Step 16/21 : ENV CONDA_DEFAULT_ENV=azureml_809a074975457de1dd27bdfcf2d79d61 CONDA_PREFIX=/azureml-envs/azureml_809a074975457de1dd27bdfcf2d79d61
+ ---> Running in 9ccd542e6196
+Removing intermediate container 9ccd542e6196
+ ---> 804bb6253019
+Step 17/21 : COPY azureml-environment-setup/spark_cache.py azureml-environment-setup/log4j.properties /azureml-environment-setup/
+ ---> 2519ab468d62
+Step 18/21 : RUN if [ $SPARK_HOME ]; then /bin/bash -c '$SPARK_HOME/bin/spark-submit  /azureml-environment-setup/spark_cache.py'; fi
+ ---> Running in 6550560d4d39
+Removing intermediate container 6550560d4d39
+ ---> 4642d63bb240
+Step 19/21 : RUN rm -rf azureml-environment-setup
+ ---> Running in b92e4e45617a
+Removing intermediate container b92e4e45617a
+ ---> c8cdc2ba36b2
+Step 20/21 : ENV AZUREML_ENVIRONMENT_IMAGE True
+ ---> Running in 361ec56a6a54
+Removing intermediate container 361ec56a6a54
+ ---> d139e28849e9
+Step 21/21 : CMD ["bash"]
+ ---> Running in e57a714cc9e7
+Removing intermediate container e57a714cc9e7
+ ---> b7f14ed23ca9
+Successfully built b7f14ed23ca9
+Successfully tagged 1635dc70ed624617b9f7f300373d982e.azurecr.io/azureml/azureml_b50cc105335d9e70a3bfb930c4b0b537:latest
+Successfully tagged 1635dc70ed624617b9f7f300373d982e.azurecr.io/azureml/azureml_b50cc105335d9e70a3bfb930c4b0b537:1
+2022/12/21 19:59:46 Successfully executed container: acb_step_0
+2022/12/21 19:59:46 Executing step ID: acb_step_1. Timeout(sec): 5400, Working directory: '', Network: 'acb_default_network'
+2022/12/21 19:59:46 Pushing image: 1635dc70ed624617b9f7f300373d982e.azurecr.io/azureml/azureml_b50cc105335d9e70a3bfb930c4b0b537:1, attempt 1
+The push refers to repository [1635dc70ed624617b9f7f300373d982e.azurecr.io/azureml/azureml_b50cc105335d9e70a3bfb930c4b0b537]
+9aaa5c7ee81c: Preparing
+5f0321696970: Preparing
+56f7ecbc69db: Preparing
+8984004c802c: Preparing
+8d777219858d: Preparing
+1b2a9cdbf9c1: Preparing
+365241d40a7b: Preparing
+52e5674fe29f: Preparing
+4e67081c77fa: Preparing
+a3a92a1e8692: Preparing
+2bcdf82aed44: Preparing
+b21e039321ee: Preparing
+445a2d2462f0: Preparing
+6e539e6b11c3: Preparing
+b67f8b8feccd: Preparing
+7e60813e02c4: Preparing
+0d66ccba1288: Preparing
+20b46ade1e43: Preparing
+21d33b1352c9: Preparing
+af7ed92504ae: Preparing
+1b2a9cdbf9c1: Waiting
+365241d40a7b: Waiting
+52e5674fe29f: Waiting
+4e67081c77fa: Waiting
+a3a92a1e8692: Waiting
+2bcdf82aed44: Waiting
+b21e039321ee: Waiting
+445a2d2462f0: Waiting
+6e539e6b11c3: Waiting
+b67f8b8feccd: Waiting
+7e60813e02c4: Waiting
+0d66ccba1288: Waiting
+20b46ade1e43: Waiting
+21d33b1352c9: Waiting
+af7ed92504ae: Waiting
+9aaa5c7ee81c: Pushed
+8d777219858d: Pushed
+5f0321696970: Pushed
+8984004c802c: Pushed
+56f7ecbc69db: Pushed
+4e67081c77fa: Pushed
+52e5674fe29f: Pushed
+365241d40a7b: Pushed
+2bcdf82aed44: Pushed
+a3a92a1e8692: Pushed
+b21e039321ee: Pushed
+7e60813e02c4: Pushed
+445a2d2462f0: Pushed
+0d66ccba1288: Pushed
+6e539e6b11c3: Pushed
+20b46ade1e43: Pushed
+af7ed92504ae: Pushed
+b67f8b8feccd: Pushed
+21d33b1352c9: Pushed
+1b2a9cdbf9c1: Pushed
+1: digest: sha256:6bb18416e52b4c610b2e57fd39b90012092f45d56de77c340e41bf4de0b0684a size: 4514
+2022/12/21 20:01:22 Successfully pushed image: 1635dc70ed624617b9f7f300373d982e.azurecr.io/azureml/azureml_b50cc105335d9e70a3bfb930c4b0b537:1
+2022/12/21 20:01:22 Executing step ID: acb_step_2. Timeout(sec): 5400, Working directory: '', Network: 'acb_default_network'
+2022/12/21 20:01:22 Pushing image: 1635dc70ed624617b9f7f300373d982e.azurecr.io/azureml/azureml_b50cc105335d9e70a3bfb930c4b0b537:latest, attempt 1
+The push refers to repository [1635dc70ed624617b9f7f300373d982e.azurecr.io/azureml/azureml_b50cc105335d9e70a3bfb930c4b0b537]
+9aaa5c7ee81c: Preparing
+5f0321696970: Preparing
+56f7ecbc69db: Preparing
+8984004c802c: Preparing
+8d777219858d: Preparing
+1b2a9cdbf9c1: Preparing
+365241d40a7b: Preparing
+52e5674fe29f: Preparing
+4e67081c77fa: Preparing
+a3a92a1e8692: Preparing
+2bcdf82aed44: Preparing
+b21e039321ee: Preparing
+445a2d2462f0: Preparing
+6e539e6b11c3: Preparing
+b67f8b8feccd: Preparing
+7e60813e02c4: Preparing
+0d66ccba1288: Preparing
+20b46ade1e43: Preparing
+21d33b1352c9: Preparing
+af7ed92504ae: Preparing
+1b2a9cdbf9c1: Waiting
+365241d40a7b: Waiting
+52e5674fe29f: Waiting
+b67f8b8feccd: Waiting
+4e67081c77fa: Waiting
+7e60813e02c4: Waiting
+a3a92a1e8692: Waiting
+0d66ccba1288: Waiting
+2bcdf82aed44: Waiting
+b21e039321ee: Waiting
+20b46ade1e43: Waiting
+445a2d2462f0: Waiting
+6e539e6b11c3: Waiting
+21d33b1352c9: Waiting
+af7ed92504ae: Waiting
+8d777219858d: Layer already exists
+9aaa5c7ee81c: Layer already exists
+8984004c802c: Layer already exists
+5f0321696970: Layer already exists
+52e5674fe29f: Layer already exists
+1b2a9cdbf9c1: Layer already exists
+56f7ecbc69db: Layer already exists
+365241d40a7b: Layer already exists
+a3a92a1e8692: Layer already exists
+4e67081c77fa: Layer already exists
+b21e039321ee: Layer already exists
+2bcdf82aed44: Layer already exists
+6e539e6b11c3: Layer already exists
+445a2d2462f0: Layer already exists
+7e60813e02c4: Layer already exists
+b67f8b8feccd: Layer already exists
+0d66ccba1288: Layer already exists
+af7ed92504ae: Layer already exists
+20b46ade1e43: Layer already exists
+21d33b1352c9: Layer already exists
+latest: digest: sha256:6bb18416e52b4c610b2e57fd39b90012092f45d56de77c340e41bf4de0b0684a size: 4514
+2022/12/21 20:01:28 Successfully pushed image: 1635dc70ed624617b9f7f300373d982e.azurecr.io/azureml/azureml_b50cc105335d9e70a3bfb930c4b0b537:latest
+2022/12/21 20:01:28 Step ID: acb_step_0 marked as successful (elapsed time in seconds: 118.997756)
+2022/12/21 20:01:28 Populating digests for step ID: acb_step_0...
+2022/12/21 20:01:29 Successfully populated digests for step ID: acb_step_0
+2022/12/21 20:01:29 Step ID: acb_step_1 marked as successful (elapsed time in seconds: 95.192543)
+2022/12/21 20:01:29 Step ID: acb_step_2 marked as successful (elapsed time in seconds: 6.344255)
+2022/12/21 20:01:29 The following dependencies were found:
+2022/12/21 20:01:29 
+- image:
+    registry: 1635dc70ed624617b9f7f300373d982e.azurecr.io
+    repository: azureml/azureml_b50cc105335d9e70a3bfb930c4b0b537
+    tag: latest
+    digest: sha256:6bb18416e52b4c610b2e57fd39b90012092f45d56de77c340e41bf4de0b0684a
+  runtime-dependency:
+    registry: mcr.microsoft.com
+    repository: azureml/openmpi4.1.0-ubuntu20.04
+    tag: 20221101.v1
+    digest: sha256:4505a963b2d34a42b5eaef48b8142ca98123d05d3a95eee3fe57551570a70e3b
+  git: {}
+- image:
+    registry: 1635dc70ed624617b9f7f300373d982e.azurecr.io
+    repository: azureml/azureml_b50cc105335d9e70a3bfb930c4b0b537
+    tag: "1"
+    digest: sha256:6bb18416e52b4c610b2e57fd39b90012092f45d56de77c340e41bf4de0b0684a
+  runtime-dependency:
+    registry: mcr.microsoft.com
+    repository: azureml/openmpi4.1.0-ubuntu20.04
+    tag: 20221101.v1
+    digest: sha256:4505a963b2d34a42b5eaef48b8142ca98123d05d3a95eee3fe57551570a70e3b
+  git: {}
+
+Run ID: ch3 was successful after 3m46s
