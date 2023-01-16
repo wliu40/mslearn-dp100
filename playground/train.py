@@ -11,13 +11,24 @@ from azureml.core import Run, Model
 import joblib
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--input_data', type=str, dest='input_data', help='Input dataset for model')
+parser.add_argument('--training-data', type=str, dest='input_data', help='Input dataset for model')
 args = parser.parse_args()
 
-run = Run.get_context()
-df = run.input_datsets['input_data'].to_pandas_dataframe()
+training_data_dir = args.input_data
 
-X_train, y_train, X_test, y_test = train_test_split(df, test_size=.3, random_state=0)
+run = Run.get_context()
+
+# !!!!!
+# df = run.input_datasets['input_data'].to_pandas_dataframe()
+df = pd.read_csv(os.path.join(training_data_dir, 'preped_data.csv'))
+
+X = df[['Pregnancies','PlasmaGlucose','DiastolicBloodPressure','TricepsThickness','SerumInsulin',
+            'BMI','DiabetesPedigree','Age']].values
+
+y = df['Diabetic'].values
+
+
+X_train, y_train, X_test, y_test = train_test_split(X, y, test_size=.3, random_state=0)
 
 model = DecisionTreeClassifier().fit(X_train, y_train)
 
